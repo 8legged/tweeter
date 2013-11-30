@@ -10,11 +10,14 @@
 
 
 <% @tweets.each do |tweet| %>
-  <div><%= highlight tweet.body, @query %>
-    - <%= tweet.created_at %>
-    by <strong><%= tweet.author %></strong>
+  <div><%= highlight(tweet.body, @query) %>
+    - (<%= pluralize(tweet.body.length, "character") %>)
+    <div>posted by <strong><%= tweet.author %></strong>
+       on <%= tweet.created_at.getlocal.strftime("%D at %-I:%M %P") %>
+    </div>
   </div>
+  <br>
 <% end %>
 <br>
-<br>
+
 
