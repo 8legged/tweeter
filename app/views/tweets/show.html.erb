@@ -1,0 +1,22 @@
+<h1><%= @tweet.author %>'s Tweet</h1>
+<div>
+  <table>
+    <tr>
+      <td>
+          <%= link_to '< all tweets', root_path %>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= @tweet.created_at.getlocal.strftime("%D at %-I:%M %P:") %>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+</div><br />
+<div>
+  <%= @tweet.body %>
+</div>

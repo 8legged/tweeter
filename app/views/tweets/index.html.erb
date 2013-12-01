@@ -3,21 +3,21 @@
 <%= link_to 'Post a Tweet', new_tweet_path %>
 <br>
 <%= form_tag root_path, method: :get do %>
-  <%= text_field_tag :query, @query, placeholder: 'Search' %>
-  <%= submit_tag "Search" %>
+<%= text_field_tag :query, @query, placeholder: 'Search' %>
+<%= submit_tag "Search" %>
 <% end %>
 <br>
-
 
 <% @tweets.each do |tweet| %>
-  <div><%= highlight(tweet.body, @query) %>
-    - (<%= pluralize(tweet.body.length, "character") %>)
-    <div>posted by <strong><%= tweet.author %></strong>
-       on <%= tweet.created_at.getlocal.strftime("%D at %-I:%M %P") %>
-    </div>
-  </div>
-  <br>
+
+<div>
+
+</div>
+<div>
+  @<strong><%= tweet.author.downcase %></strong>
+  <%= simple_format(word_wrap(highlight(truncate(tweet.body, length: 80) { link_to "(read more)", tweet }, @query))) %>
+  Date: <%= tweet.created_at.getlocal.strftime("%D") %><br />
+  Length: <%= pluralize(tweet.body.length, "character") %>
+</div>
+<br />
 <% end %>
-<br>
-
-
