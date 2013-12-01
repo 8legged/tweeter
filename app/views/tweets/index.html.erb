@@ -1,23 +1,19 @@
 <h1>Tweeter</h1>
-
-<%= link_to 'Post a Tweet', new_tweet_path %>
-<br>
-<%= form_tag root_path, method: :get do %>
-<%= text_field_tag :query, @query, placeholder: 'Search' %>
-<%= submit_tag "Search" %>
+<div>
+<%= link_to 'Post a Tweet', new_tweet_path %><%= form_tag root_path, method: :get do %>
+</div>
+<div>
+  <%= text_field_tag :query, @query, placeholder: 'Search for...' %><%= submit_tag "Search" %>
 <% end %>
-<br>
+</div><br />
 
 <% @tweets.each do |tweet| %>
-
 <div>
-
 </div>
 <div>
   @<strong><%= tweet.author.downcase %></strong>
-  <%= simple_format(word_wrap(highlight(truncate(tweet.body, length: 80) { link_to "(read more)", tweet }, @query))) %>
+  <%= highlight(simple_format(word_wrap(truncate(tweet.body, length: 80) { link_to "(read more)", tweet })), @query) %>
   Date: <%= tweet.created_at.getlocal.strftime("%D") %><br />
   Length: <%= pluralize(tweet.body.length, "character") %>
-</div>
-<br />
+</div><br />
 <% end %>

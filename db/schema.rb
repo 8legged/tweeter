@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128032831) do
+ActiveRecord::Schema.define(version: 20131201081229) do
 
   create_table "tweets", force: true do |t|
     t.string   "author"
-    t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "body"
   end
 
 end
